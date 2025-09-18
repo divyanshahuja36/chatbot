@@ -3,5 +3,4 @@ uvicorn
 openai
 textblob
 SpeechRecognition
-pyaudio
 python-dotenv
