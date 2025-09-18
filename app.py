@@ -1,6 +1,6 @@
 from fastapi import FastAPI
 from pydantic import BaseModel
-from chatbot.companion_bot import CompanionBot
+from companion_bot import CompanionBot  # Updated import
 
 app = FastAPI()
 bot = CompanionBot(checkin_interval_seconds=60*60*4, problem_phase_limit=4, wrap_up_threshold=35)
