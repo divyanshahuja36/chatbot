@@ -1,7 +1,8 @@
+# app.py
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
-from companion_bot import CompanionBot  # updated import
+from companion_bot import CompanionBot  # your updated bot file
 
 app = FastAPI()
 bot = CompanionBot(problem_phase_limit=4, wrap_up_threshold=35)
@@ -20,9 +21,18 @@ class UserMessage(BaseModel):
 
 @app.post("/message")
 def send_message(msg: UserMessage):
-    # Get bot reply
+    """
+    Accepts user message and returns bot reply as JSON.
+    Example response:
+    {
+        "reply": "...",
+        "mood": "😊",
+        "risk": "💚",
+        "stage": "companion"
+    }
+    """
     bot_response = bot.run_once_text(msg.text)
-    return bot_response  # Return bot reply JSON
+    return bot_response  # JSON returned directly to frontend
 
 @app.get("/")
 def root():
